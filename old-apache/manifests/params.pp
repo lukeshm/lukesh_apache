@@ -1,5 +1,3 @@
-# == Class: apache::params
-#
 class apache::params {
   case $::osfamily {
     'Debian': {
@@ -7,13 +5,12 @@ class apache::params {
       $service_name = 'httpd'
     }
     'RedHat', 'Amazon': {
-      $package_name = 'httpd'
-      $service_name = 'httpd'
-    }
-    default: {
-      fail("${::operatingsystem} not supported")
-    }
+    $package_name = 'httpd'
+    $service_name = 'httpd'
   }
-
+  default: {
+    fail("${::operationsystem} not supported" )
+  }
+  }
   $webpage_text = 'Puppet was here 2016'
 }
